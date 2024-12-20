@@ -1,9 +1,9 @@
 import "./EmployeeForm.scss";
+// Types
+import { TRisk } from "../../types/Employee.types";
 // Bootstrap
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-
-type TRisk = "low" | "mid" | "high";
 
 interface IEmplyeeFromProps {
   setEID: (EID: string) => void;

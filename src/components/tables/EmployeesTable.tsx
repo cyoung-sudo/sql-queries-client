@@ -1,16 +1,7 @@
 import "./EmployeesTable.scss";
+import { IEmployee } from "../../types/Employee.types";
 // Bootstrap
 import Table from 'react-bootstrap/Table';
-
-interface IEmployee {
-  EID: string;
-  firstName: string;
-  lastName: string;
-  startDate: Date;
-  salary: number;
-  risk: "low" | "mid" | "high";
-  remote: boolean;
-}
 
 const testData: IEmployee[] = [
   {

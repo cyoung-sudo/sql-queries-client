@@ -1,12 +1,8 @@
 import "./ClockinTable.scss";
+// Types
+import { IClockin } from "../../types/Clockin.types";
 // Bootstrap
 import Table from 'react-bootstrap/Table';
-
-interface IClockin {
-  EID: string;
-  clockins: number;
-  lastClockin: Date;
-}
 
 const testData: IClockin[] = [
   {
