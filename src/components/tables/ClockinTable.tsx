@@ -2,13 +2,13 @@ import "./ClockinTable.scss";
 // Bootstrap
 import Table from 'react-bootstrap/Table';
 
-interface IEmployee {
+interface IClockin {
   EID: string;
   clockins: number;
   lastClockin: Date;
 }
 
-const testData: IEmployee[] = [
+const testData: IClockin[] = [
   {
     EID: "12345",
     clockins: 5,
