@@ -1,5 +1,5 @@
 export interface IClockin {
-  EID: string;
+  eID: string;
   clockins: number;
   lastClockin: Date;
 };

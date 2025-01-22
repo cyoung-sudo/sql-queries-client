@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 interface IClockinFormProps {
-  setEID2: (EID: string) => void;
+  setEID2: (eID: string) => void;
   submitClockin: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 

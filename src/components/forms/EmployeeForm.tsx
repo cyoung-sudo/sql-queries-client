@@ -6,10 +6,10 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 interface IEmplyeeFromProps {
-  setEID: (EID: string) => void;
+  setEID: (eID: string) => void;
   setFirstName: (firstName: string) => void;
   setLastName: (lastName: string) => void;
-  setStartDate: (startDate: Date) => void;
+  setStartDate: (startDate: string) => void;
   setSalary: (salary: number) => void;
   setRisk: (risk: TRisk) => void;
   setRemote: (remote: boolean) => void;
@@ -36,7 +36,7 @@ const EmployeeForm: React.FC<IEmplyeeFromProps> = ({setEID, setFirstName, setLas
 
       <Form.Group className="mb-3">
         <Form.Label>Start Date</Form.Label>
-        <Form.Control onChange={e => setStartDate(new Date(e.target.value))} type="date" placeholder="Enter start date" />
+        <Form.Control onChange={e => setStartDate(e.target.value)} type="date" placeholder="Enter start date" />
       </Form.Group>
 
       <Form.Group className="mb-3">

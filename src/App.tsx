@@ -6,37 +6,40 @@ import EmployeesTable from './components/tables/EmployeesTable'
 import EmployeeForm from './components/forms/EmployeeForm'
 import ClockinTable from './components/tables/ClockinTable'
 import ClockinForm from './components/forms/ClockinForm'
+// APIs
+import EmployeeAPI from "./apis/EmployeeAPI";
 // Bootstrap
 import Accordion from 'react-bootstrap/Accordion';
 
-type TRisk = "low" | "mid" | "high";
-
 function App() {
   // Controlled inputs (employee)
-  const [EID, setEID] = useState<string | null>(null);
+  const [eID, setEID] = useState<string | null>(null);
   const [firstName, setFirstName] = useState<string | null>(null);
   const [lastName, setLastName] = useState<string | null>(null);
-  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [startDate, setStartDate] = useState<string | null>(null);
   const [salary, setSalary] = useState<number | null>(null);
-  const [risk, setRisk] = useState<TRisk | null>(null);
-  const [remote, setRemote] = useState<boolean | null>(null);
+  const [risk, setRisk] = useState("low");
+  const [remote, setRemote] = useState(false);
   // Controlled inputs (clockin)
-  const [EID2, setEID2] = useState<string | null>(null);
+  const [eID2, setEID2] = useState<string | null>(null);
 
   const submitEmployee = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(EID);
-    console.log(firstName);
-    console.log(lastName);
-    console.log(startDate);
-    console.log(salary);
-    console.log(risk);
-    console.log(remote);
+    if(eID !== null && firstName !== null && lastName !== null && startDate !== null && salary !== null && risk !== null && remote !== null) {
+      EmployeeAPI.create(eID, firstName, lastName, startDate, salary, risk, remote)
+      .then(res => {
+        if(res.data.success) {
+          console.log("success");
+        }
+      })
+    } else {
+      console.log("fail")
+    }
   }
 
   const submitClockin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(EID2);
+    console.log(eID2);
   }
 
   return (

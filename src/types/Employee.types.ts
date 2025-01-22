@@ -1,10 +1,10 @@
 export type TRisk = "low" | "mid" | "high";
 
 export interface IEmployee {
-  EID: string;
+  eID: string;
   firstName: string;
   lastName: string;
-  startDate: Date;
+  startDate: string;
   salary: number;
   risk: TRisk;
   remote: boolean;
