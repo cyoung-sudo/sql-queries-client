@@ -1,6 +1,6 @@
 import './App.scss'
 // React
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // Components
 import EmployeesTable from './components/tables/EmployeesTable'
 import EmployeeForm from './components/forms/EmployeeForm'
@@ -8,10 +8,17 @@ import ClockinTable from './components/tables/ClockinTable'
 import ClockinForm from './components/forms/ClockinForm'
 // APIs
 import EmployeeAPI from "./apis/EmployeeAPI";
+import ClockinAPI from "./apis/ClockinAPI";
+// Types
+import { IEmployee } from './types/Employee.types';
+import { IClockin } from './types/Clockin.types';
 // Bootstrap
 import Accordion from 'react-bootstrap/Accordion';
 
 function App() {
+  // Requested data
+  const [employees, setEmployees] = useState<IEmployee[] | null>(null);
+  const [clockins, setClockins] = useState<IClockin[] | null>(null);
   // Controlled inputs (employee)
   const [eID, setEID] = useState<string | null>(null);
   const [firstName, setFirstName] = useState<string | null>(null);
@@ -23,6 +30,24 @@ function App() {
   // Controlled inputs (clockin)
   const [eID2, setEID2] = useState<string | null>(null);
 
+  useEffect(() => {
+    EmployeeAPI.getAll()
+    .then(res => {
+      console.log(res.data.employees);
+      setEmployees(res.data.employees);
+    })
+    .catch(err => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    ClockinAPI.getAll()
+    .then(res => {
+      console.log(res.data.clockins);
+      setClockins(res.data.clockins);
+    })
+    .catch(err => console.log(err));
+  }, []);
+
   const submitEmployee = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if(eID !== null && firstName !== null && lastName !== null && startDate !== null && salary !== null && risk !== null && remote !== null) {
@@ -32,49 +57,64 @@ function App() {
           console.log("success");
         }
       })
-    } else {
-      console.log("fail")
     }
   }
 
   const submitClockin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(eID2);
+    if(eID2 !== null) {
+      ClockinAPI.create(eID2)
+      .then(res => {
+        if(res.data.success) {
+          console.log("success");
+        }
+      })
+      .catch(err => console.log(err));
+    }
   }
 
   return (
     <div id="app">
-      <EmployeesTable/>
+      {employees &&
+        <EmployeesTable employees={employees}/>
+      }
 
-      <Accordion defaultActiveKey="0">
-        <Accordion.Item eventKey="0">
-          <Accordion.Header>Add Employee</Accordion.Header>
-          <Accordion.Body>
-            <EmployeeForm
-              setEID={setEID}
-              setFirstName={setFirstName}
-              setLastName={setLastName}
-              setStartDate={setStartDate}
-              setSalary={setSalary}
-              setRisk={setRisk}
-              setRemote={setRemote}
-              submitEmployee={submitEmployee}/>
-          </Accordion.Body>
-        </Accordion.Item>
-      </Accordion>
+      {employees &&
+        <Accordion defaultActiveKey="0">
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>Add Employee</Accordion.Header>
+            <Accordion.Body>
+              <EmployeeForm
+                setEID={setEID}
+                setFirstName={setFirstName}
+                setLastName={setLastName}
+                setStartDate={setStartDate}
+                setSalary={setSalary}
+                setRisk={setRisk}
+                setRemote={setRemote}
+                submitEmployee={submitEmployee}/>
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
+      }
 
-      <ClockinTable/>
+      {clockins &&
+        <ClockinTable clockins={clockins}/>
+      }
 
-      <Accordion defaultActiveKey="0">
-        <Accordion.Item eventKey="0">
-          <Accordion.Header>Add Clockin</Accordion.Header>
-          <Accordion.Body>
-            <ClockinForm
-              setEID2={setEID2}
-              submitClockin={submitClockin}/>
-          </Accordion.Body>
-        </Accordion.Item>
-      </Accordion>
+      {clockins &&
+        <Accordion defaultActiveKey="0">
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>Add Clockin</Accordion.Header>
+            <Accordion.Body>
+              <ClockinForm
+                setEID2={setEID2}
+                submitClockin={submitClockin}/>
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
+      }
     </div>
   )
 }

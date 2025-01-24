@@ -5,7 +5,7 @@ import { TRisk } from "../../types/Employee.types";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-interface IEmplyeeFromProps {
+interface IEmployeeFromProps {
   setEID: (eID: string) => void;
   setFirstName: (firstName: string) => void;
   setLastName: (lastName: string) => void;
@@ -16,7 +16,7 @@ interface IEmplyeeFromProps {
   submitEmployee: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
-const EmployeeForm: React.FC<IEmplyeeFromProps> = ({setEID, setFirstName, setLastName, setStartDate, setSalary, setRisk, setRemote, submitEmployee}) => {
+const EmployeeForm: React.FC<IEmployeeFromProps> = ({setEID, setFirstName, setLastName, setStartDate, setSalary, setRisk, setRemote, submitEmployee}) => {
   return(
     <Form className="employeeForm" onSubmit={submitEmployee}>
       <Form.Group className="mb-3">

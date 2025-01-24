@@ -3,26 +3,13 @@ import "./ClockinTable.scss";
 import { IClockin } from "../../types/Clockin.types";
 // Bootstrap
 import Table from 'react-bootstrap/Table';
+import React from "react";
 
-const testData: IClockin[] = [
-  {
-    eID: "12345",
-    clockins: 5,
-    lastClockin: new Date()
-  },
-  {
-    eID: "12346",
-    clockins: 5,
-    lastClockin: new Date()
-  },
-  {
-    eID: "12347",
-    clockins: 5,
-    lastClockin: new Date()
-  },
-];
+interface IClockinProps {
+  clockins: IClockin[]
+}
 
-const ClockinTable = () => {
+const ClockinTable: React.FC<IClockinProps> = ({clockins}) => {
   return(
     <Table className="clockinTable" striped bordered hover>
       <thead>
@@ -33,11 +20,11 @@ const ClockinTable = () => {
         </tr>
       </thead>
       <tbody>
-        {testData.map((clockin, idx) => (
+        {clockins.map((clockin, idx) => (
           <tr key={idx}>
             <td>{clockin.eID}</td>
             <td>{clockin.clockins}</td>
-            <td>{clockin.lastClockin.toDateString()}</td>
+            <td>{clockin.lastClockin.slice(0, 10)}</td>
           </tr>
         ))}
       </tbody>

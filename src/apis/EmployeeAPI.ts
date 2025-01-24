@@ -14,7 +14,6 @@ const EmployeeAPI = {
   
   //----- Add employee
   create: async (eID: string, firstName: string, lastName: string, startDate: string, salary: number, risk: string, remote: boolean) => {
-    console.log("api")
     const res = await api.request({
       method: "POST",
       data: {
