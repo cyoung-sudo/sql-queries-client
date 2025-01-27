@@ -3,11 +3,11 @@ import { IEmployee } from "../../types/Employee.types";
 // Bootstrap
 import Table from 'react-bootstrap/Table';
 
-interface IEmployeeTableProps {
+interface IEmployeesTableProps {
   employees: IEmployee[]
 }
 
-const EmployeesTable: React.FC<IEmployeeTableProps> = ({employees}) => {
+const EmployeesTable: React.FC<IEmployeesTableProps> = ({employees}) => {
   return(
     <Table className="employeesTable" striped bordered hover>
       <thead>

@@ -1,11 +1,11 @@
-import "./EmployeeForm.scss";
+import "./EmployeesForm.scss";
 // Types
 import { TRisk } from "../../types/Employee.types";
 // Bootstrap
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-interface IEmployeeFromProps {
+interface IEmployeesFromProps {
   setEID: (eID: string) => void;
   setFirstName: (firstName: string) => void;
   setLastName: (lastName: string) => void;
@@ -16,7 +16,7 @@ interface IEmployeeFromProps {
   submitEmployee: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
-const EmployeeForm: React.FC<IEmployeeFromProps> = ({setEID, setFirstName, setLastName, setStartDate, setSalary, setRisk, setRemote, submitEmployee}) => {
+const EmployeesForm: React.FC<IEmployeesFromProps> = ({setEID, setFirstName, setLastName, setStartDate, setSalary, setRisk, setRemote, submitEmployee}) => {
   return(
     <Form className="employeeForm" onSubmit={submitEmployee}>
       <Form.Group className="mb-3">
@@ -64,4 +64,4 @@ const EmployeeForm: React.FC<IEmployeeFromProps> = ({setEID, setFirstName, setLa
   )
 };
 
-export default EmployeeForm;
+export default EmployeesForm;

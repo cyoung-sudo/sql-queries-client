@@ -3,9 +3,9 @@ import './App.scss'
 import { useState, useEffect } from 'react';
 // Components
 import EmployeesTable from './components/tables/EmployeesTable'
-import EmployeeForm from './components/forms/EmployeeForm'
-import ClockinTable from './components/tables/ClockinTable'
-import ClockinForm from './components/forms/ClockinForm'
+import EmployeesForm from './components/forms/EmployeesForm'
+import ClockinsTable from './components/tables/ClockinsTable';
+import ClockinsForm from './components/forms/ClockinsForm'
 import ResultsTable from './components/tables/ResultsTable';
 import ResultsForm from './components/forms/ResultsForm';
 // APIs
@@ -106,7 +106,7 @@ function App() {
           <Accordion.Item eventKey="0">
             <Accordion.Header>Add Employee</Accordion.Header>
             <Accordion.Body>
-              <EmployeeForm
+              <EmployeesForm
                 setEID={setEID}
                 setFirstName={setFirstName}
                 setLastName={setLastName}
@@ -121,7 +121,7 @@ function App() {
       }
 
       {clockins &&
-        <ClockinTable clockins={clockins}/>
+        <ClockinsTable clockins={clockins}/>
       }
 
       {clockins &&
@@ -129,7 +129,7 @@ function App() {
           <Accordion.Item eventKey="0">
             <Accordion.Header>Add Clockin</Accordion.Header>
             <Accordion.Body>
-              <ClockinForm
+              <ClockinsForm
                 setEID2={setEID2}
                 submitClockin={submitClockin}/>
             </Accordion.Body>

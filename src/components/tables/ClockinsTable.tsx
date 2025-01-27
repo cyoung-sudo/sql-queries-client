@@ -1,15 +1,15 @@
-import "./ClockinTable.scss";
+import "./ClockinsTable.scss";
 // Types
 import { IClockin } from "../../types/Clockin.types";
 // Bootstrap
 import Table from 'react-bootstrap/Table';
 import React from "react";
 
-interface IClockinProps {
+interface IClockinsProps {
   clockins: IClockin[]
 }
 
-const ClockinTable: React.FC<IClockinProps> = ({clockins}) => {
+const ClockinsTable: React.FC<IClockinsProps> = ({clockins}) => {
   return(
     <Table className="clockinTable" striped bordered hover>
       <thead>
@@ -32,4 +32,4 @@ const ClockinTable: React.FC<IClockinProps> = ({clockins}) => {
   )
 };
 
-export default ClockinTable;
+export default ClockinsTable;

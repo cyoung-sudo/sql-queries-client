@@ -1,14 +1,14 @@
-import "./ClockinForm.scss";
+import "./ClockinsForm.scss";
 // Bootstrap
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-interface IClockinFormProps {
+interface IClockinsFormProps {
   setEID2: (eID: string) => void;
   submitClockin: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const ClockinForm: React.FC<IClockinFormProps> = ({setEID2, submitClockin}) => {
+const ClockinsForm: React.FC<IClockinsFormProps> = ({setEID2, submitClockin}) => {
   return(
     <Form className="clockinForm" onSubmit={submitClockin}>
       <Form.Group className="mb-3">
@@ -23,4 +23,4 @@ const ClockinForm: React.FC<IClockinFormProps> = ({setEID2, submitClockin}) => {
   )
 };
 
-export default ClockinForm;
+export default ClockinsForm;
