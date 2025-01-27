@@ -35,6 +35,9 @@ function App() {
   const [eID2, setEID2] = useState<string | null>(null);
   // Controlled inputs (result)
   const [query, setQuery] = useState<string | null>(null);
+  // Refresh
+  const [refreshEmployees, setRefreshEmployees] = useState(false);
+  const [refreshclockins, setRefreshClockins] = useState(false);
 
   useEffect(() => {
     EmployeeAPI.getAll()
@@ -42,7 +45,7 @@ function App() {
       setEmployees(res.data.employees);
     })
     .catch(err => console.log(err));
-  }, []);
+  }, [refreshEmployees]);
 
   useEffect(() => {
     ClockinAPI.getAll()
@@ -50,7 +53,7 @@ function App() {
       setClockins(res.data.clockins);
     })
     .catch(err => console.log(err));
-  }, []);
+  }, [refreshclockins]);
 
   const submitEmployee = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -59,6 +62,7 @@ function App() {
       .then(res => {
         if(res.data.success) {
           console.log("success");
+          setRefreshEmployees(state => !state);
         }
       })
     }
@@ -66,12 +70,12 @@ function App() {
 
   const submitClockin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(eID2);
     if(eID2 !== null) {
       ClockinAPI.create(eID2)
       .then(res => {
         if(res.data.success) {
           console.log("success");
+          setRefreshClockins(state => !state);
         }
       })
       .catch(err => console.log(err));
