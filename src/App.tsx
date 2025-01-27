@@ -101,62 +101,74 @@ function App() {
 
   return (
     <div id="app">
-      {employees &&
-        <EmployeesTable employees={employees}/>
-      }
+      <div id="app-employees">
+        {employees &&
+          <div id="app-employees-table">
+            <EmployeesTable employees={employees}/>
+          </div>
+        }
 
-      {employees &&
-        <Accordion defaultActiveKey="0">
-          <Accordion.Item eventKey="0">
-            <Accordion.Header>Add Employee</Accordion.Header>
-            <Accordion.Body>
-              <EmployeesForm
-                setEID={setEID}
-                setFirstName={setFirstName}
-                setLastName={setLastName}
-                setStartDate={setStartDate}
-                setSalary={setSalary}
-                setRisk={setRisk}
-                setRemote={setRemote}
-                submitEmployee={submitEmployee}/>
-            </Accordion.Body>
-          </Accordion.Item>
-        </Accordion>
-      }
+        {employees &&
+          <Accordion>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>Add Employee</Accordion.Header>
+              <Accordion.Body>
+                <EmployeesForm
+                  setEID={setEID}
+                  setFirstName={setFirstName}
+                  setLastName={setLastName}
+                  setStartDate={setStartDate}
+                  setSalary={setSalary}
+                  setRisk={setRisk}
+                  setRemote={setRemote}
+                  submitEmployee={submitEmployee}/>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+        }
+      </div>
 
-      {clockins &&
-        <ClockinsTable clockins={clockins}/>
-      }
+      <div id="app-clockins">
+        {clockins &&
+          <div id="app-employees-table">
+            <ClockinsTable clockins={clockins}/>
+          </div>
+        }
 
-      {clockins &&
-        <Accordion defaultActiveKey="0">
-          <Accordion.Item eventKey="0">
-            <Accordion.Header>Add Clockin</Accordion.Header>
-            <Accordion.Body>
-              <ClockinsForm
-                setEID2={setEID2}
-                submitClockin={submitClockin}/>
-            </Accordion.Body>
-          </Accordion.Item>
-        </Accordion>
-      }
+        {clockins &&
+          <Accordion>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>Add Clockin</Accordion.Header>
+              <Accordion.Body>
+                <ClockinsForm
+                  setEID2={setEID2}
+                  submitClockin={submitClockin}/>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+        }
+      </div>
 
-      {results &&
-        <ResultsTable results={results}/>
-      }
+      <div id="app-results">
+        {results &&
+          <div id="app-results-table">
+            <ResultsTable results={results}/>
+          </div>
+        }
 
-      {employees && clockins &&
-        <Accordion defaultActiveKey="0">
-          <Accordion.Item eventKey="0">
-            <Accordion.Header>Query Employees</Accordion.Header>
-            <Accordion.Body>
-              <ResultsForm
-                setQuery={setQuery}
-                submitQuery={submitQuery}/>
-            </Accordion.Body>
-          </Accordion.Item>
-        </Accordion>
-      }
+        {employees && clockins &&
+          <Accordion>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>Query Employees</Accordion.Header>
+              <Accordion.Body>
+                <ResultsForm
+                  setQuery={setQuery}
+                  submitQuery={submitQuery}/>
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+        }
+      </div>
     </div>
   )
 }

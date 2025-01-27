@@ -1,1 +1,37 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
+
+#app-employees {
+  margin: 1rem;
+}
+
+#app-employees-table {
+  overflow: auto;
+  table {
+    margin: 0;
+    width: 100%;
+  }
+}
+
+#app-clockins {
+  margin: 1rem;
+}
+
+#app-clockins-table {
+  overflow: auto;
+  table {
+    margin: 0;
+    width: 100%;
+  }
+}
+
+#app-results {
+  margin: 1rem;
+}
+
+#app-results-table {
+  overflow: auto;
+  table {
+    margin: 0;
+    width: 100%;
+  }
+}
