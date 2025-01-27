@@ -17,6 +17,9 @@ import { IEmployee } from './types/Employee.types';
 import { IClockin } from './types/Clockin.types';
 // Bootstrap
 import Accordion from 'react-bootstrap/Accordion';
+// Icons
+import { FaPlus } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 
 function App() {
   // Requested data
@@ -101,73 +104,75 @@ function App() {
 
   return (
     <div id="app">
-      <div id="app-employees">
-        {employees &&
-          <div id="app-employees-table">
-            <EmployeesTable employees={employees}/>
-          </div>
-        }
+      <div id="app-content">
+        <div id="app-employees">
+          {employees &&
+            <div id="app-employees-table">
+              <EmployeesTable employees={employees}/>
+            </div>
+          }
 
-        {employees &&
-          <Accordion>
-            <Accordion.Item eventKey="0">
-              <Accordion.Header>Add Employee</Accordion.Header>
-              <Accordion.Body>
-                <EmployeesForm
-                  setEID={setEID}
-                  setFirstName={setFirstName}
-                  setLastName={setLastName}
-                  setStartDate={setStartDate}
-                  setSalary={setSalary}
-                  setRisk={setRisk}
-                  setRemote={setRemote}
-                  submitEmployee={submitEmployee}/>
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
-        }
-      </div>
+          {employees &&
+            <Accordion>
+              <Accordion.Item eventKey="0">
+                <Accordion.Header className="app-accordion-header"><b>Add Employee</b><span><FaPlus/></span></Accordion.Header>
+                <Accordion.Body>
+                  <EmployeesForm
+                    setEID={setEID}
+                    setFirstName={setFirstName}
+                    setLastName={setLastName}
+                    setStartDate={setStartDate}
+                    setSalary={setSalary}
+                    setRisk={setRisk}
+                    setRemote={setRemote}
+                    submitEmployee={submitEmployee}/>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          }
+        </div>
 
-      <div id="app-clockins">
-        {clockins &&
-          <div id="app-employees-table">
-            <ClockinsTable clockins={clockins}/>
-          </div>
-        }
+        <div id="app-clockins">
+          {clockins &&
+            <div id="app-employees-table">
+              <ClockinsTable clockins={clockins}/>
+            </div>
+          }
 
-        {clockins &&
-          <Accordion>
-            <Accordion.Item eventKey="0">
-              <Accordion.Header>Add Clockin</Accordion.Header>
-              <Accordion.Body>
-                <ClockinsForm
-                  setEID2={setEID2}
-                  submitClockin={submitClockin}/>
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
-        }
-      </div>
+          {clockins &&
+            <Accordion>
+              <Accordion.Item eventKey="0">
+              <Accordion.Header className="app-accordion-header"><b>Add Clock-in</b><span><FaPlus/></span></Accordion.Header>
+                <Accordion.Body>
+                  <ClockinsForm
+                    setEID2={setEID2}
+                    submitClockin={submitClockin}/>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          }
+        </div>
 
-      <div id="app-results">
-        {results &&
-          <div id="app-results-table">
-            <ResultsTable results={results}/>
-          </div>
-        }
+        <div id="app-results">
+          {results &&
+            <div id="app-results-table">
+              <ResultsTable results={results}/>
+            </div>
+          }
 
-        {employees && clockins &&
-          <Accordion>
-            <Accordion.Item eventKey="0">
-              <Accordion.Header>Query Employees</Accordion.Header>
-              <Accordion.Body>
-                <ResultsForm
-                  setQuery={setQuery}
-                  submitQuery={submitQuery}/>
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
-        }
+          {employees && clockins &&
+            <Accordion>
+              <Accordion.Item eventKey="0">
+              <Accordion.Header className="app-accordion-header"><b>Query Employees</b><span><FaSearch/></span></Accordion.Header>
+                <Accordion.Body>
+                  <ResultsForm
+                    setQuery={setQuery}
+                    submitQuery={submitQuery}/>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          }
+        </div>
       </div>
     </div>
   )

@@ -1,37 +1,69 @@
 @import '../node_modules/bootstrap/scss/bootstrap';
 
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: mintcream;
+}
+
+#app-content {
+  width: 100vw;
+}
+
 #app-employees {
-  margin: 1rem;
+  margin: 2rem 1rem;
 }
 
 #app-employees-table {
   overflow: auto;
   table {
     margin: 0;
-    width: 100%;
   }
 }
 
 #app-clockins {
-  margin: 1rem;
+  margin: 2rem 1rem;
 }
 
 #app-clockins-table {
   overflow: auto;
   table {
     margin: 0;
-    width: 100%;
   }
 }
 
 #app-results {
-  margin: 1rem;
+  margin: 2rem 1rem;
 }
 
 #app-results-table {
   overflow: auto;
   table {
     margin: 0;
-    width: 100%;
+  }
+}
+
+.app-accordion-header {
+  > button {
+    > span {
+      position: relative;
+        left: 4px;
+        bottom: 1px;
+    }
+  }
+}
+
+/* Medium devices such as tablets (768px and up) */
+@media only screen and (min-width: 768px) {
+  #app-content {
+    width: 80vw;
+  }
+}
+
+/* Largest devices such as desktops (1280px and up) */
+@media only screen and (min-width: 1280px) {
+  #app-content {
+    width: 60vw;
   }
 }
