@@ -6,9 +6,12 @@ import EmployeesTable from './components/tables/EmployeesTable'
 import EmployeeForm from './components/forms/EmployeeForm'
 import ClockinTable from './components/tables/ClockinTable'
 import ClockinForm from './components/forms/ClockinForm'
+import ResultsTable from './components/tables/ResultsTable';
+import ResultsForm from './components/forms/ResultsForm';
 // APIs
 import EmployeeAPI from "./apis/EmployeeAPI";
 import ClockinAPI from "./apis/ClockinAPI";
+import ResultAPI from './apis/ResultAPI';
 // Types
 import { IEmployee } from './types/Employee.types';
 import { IClockin } from './types/Clockin.types';
@@ -19,6 +22,7 @@ function App() {
   // Requested data
   const [employees, setEmployees] = useState<IEmployee[] | null>(null);
   const [clockins, setClockins] = useState<IClockin[] | null>(null);
+  const [results, setResults] = useState<IEmployee[] | null>(null);
   // Controlled inputs (employee)
   const [eID, setEID] = useState<string | null>(null);
   const [firstName, setFirstName] = useState<string | null>(null);
@@ -29,11 +33,12 @@ function App() {
   const [remote, setRemote] = useState(false);
   // Controlled inputs (clockin)
   const [eID2, setEID2] = useState<string | null>(null);
+  // Controlled inputs (result)
+  const [query, setQuery] = useState<string | null>(null);
 
   useEffect(() => {
     EmployeeAPI.getAll()
     .then(res => {
-      console.log(res.data.employees);
       setEmployees(res.data.employees);
     })
     .catch(err => console.log(err));
@@ -42,7 +47,6 @@ function App() {
   useEffect(() => {
     ClockinAPI.getAll()
     .then(res => {
-      console.log(res.data.clockins);
       setClockins(res.data.clockins);
     })
     .catch(err => console.log(err));
@@ -73,6 +77,23 @@ function App() {
       .catch(err => console.log(err));
     }
   }
+
+  const submitQuery = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(query);
+    if(query !== null) {
+      ResultAPI.getAll(query)
+      .then(res => {
+        if(res.data.success) {
+          console.log(res.data.employees);
+          setResults(res.data.employees);
+        } else {
+          console.log("fail")
+        }
+      })
+      .catch(err => console.log(err));
+    }
+  } 
 
   return (
     <div id="app">
@@ -111,6 +132,23 @@ function App() {
               <ClockinForm
                 setEID2={setEID2}
                 submitClockin={submitClockin}/>
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
+      }
+
+      {results &&
+        <ResultsTable results={results}/>
+      }
+
+      {employees && clockins &&
+        <Accordion defaultActiveKey="0">
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>Query Employees</Accordion.Header>
+            <Accordion.Body>
+              <ResultsForm
+                setQuery={setQuery}
+                submitQuery={submitQuery}/>
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
